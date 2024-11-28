@@ -18,6 +18,13 @@
         <span class="cursor__trace__inner"></span>
       </div>
     </div>
+    <section class="preloader shown-area">
+      <button class="preloader__btn">
+        <span class="preloader__btn_hold">Hold</span>
+      </button>
+    </section>
+
+    <section class="header hidden-area">Header</section>
   </body>
 
   <script>
@@ -62,6 +69,52 @@
     // 마우스 클릭 이벤트
     document.addEventListener("click", (e) => {
       createRipple(e);
+    });
+
+    // Hold 버튼 길게 눌렀을 때 처리
+    const preloader = document.querySelector(".preloader");
+    const preloaderBtn = document.querySelector(".preloader__btn");
+    const preloaderBtnHold = document.querySelector(".preloader__btn_hold");
+    const header = document.querySelector(".header");
+
+    let intervalId = null;
+    let scale = 1;
+    const preloaderHideThreshold = 18;
+
+    function setPreloaderStyle(scale) {
+      preloaderBtn.style.transform = `scale(${scale})`;
+      preloaderBtnHold.style.opacity = 1 - scale / preloaderHideThreshold;
+    }
+
+    preloaderBtn.addEventListener("mousedown", () => {
+      intervalId = setInterval(() => {
+        scale += 0.175;
+
+        setPreloaderStyle(scale);
+
+        // 버튼이 일정 크기 이상 커졌을 때
+        if (scale >= preloaderHideThreshold) {
+          preloader.classList.add("hidden-area");
+          preloader.classList.add("shown-area");
+          header.classList.remove("hidden-area");
+
+          clearInterval(intervalId);
+        }
+      }, 10); // 0.01초
+    });
+
+    preloaderBtn.addEventListener("mouseup", () => {
+      clearInterval(intervalId);
+
+      intervalId = setInterval(() => {
+        scale -= 0.175;
+
+        setPreloaderStyle(scale);
+
+        if (scale <= 1) {
+          clearInterval(intervalId);
+        }
+      }, 10);
     });
   </script>
 </html>
