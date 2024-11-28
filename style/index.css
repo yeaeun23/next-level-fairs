@@ -37,3 +37,30 @@ body {
   transform: translate(-50%, -50%);
   transition: all 0.04s ease;
 }
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d5a54e;
+  animation: ripple 0.5s ease-out;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
