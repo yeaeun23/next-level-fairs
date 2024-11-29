@@ -108,3 +108,29 @@ body {
   font-weight: 800;
   letter-spacing: normal;
 }
+
+.header {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.circle {
+  position: absolute;
+  display: inline-block;
+  width: 350px;
+  height: 350px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+#circle-1 {
+  top: -100px;
+  left: -130px;
+}
+
+#circle-2 {
+  bottom: 5vh;
+  right: -230px;
+}
