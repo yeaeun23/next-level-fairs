@@ -151,5 +151,19 @@
         }
       }, 10);
     });
+
+    // 마우스 이동 이벤트 - 텍스트, 도형 움직이기
+    header.addEventListener("mousemove", (e) => {
+      const xRelativeToHeader = e.clientX / header.clientWidth;
+      const yRelativeToHeader = e.clientY / header.clientHeight;
+
+      document.querySelector(".header__title").style.transform = `translate(${xRelativeToHeader * -50}px, ${yRelativeToHeader * -50}px)`;
+      document.getElementById("circle-1").style.transform = `translate(${xRelativeToHeader * -25}px, ${yRelativeToHeader * -25}px)`;
+      document.getElementById("circle-2").style.transform = `translate(${xRelativeToHeader * 25}px, ${yRelativeToHeader * 25}px)`;
+      document.getElementById("cube__image_1").style.transform = `translate(${xRelativeToHeader * -15}px, ${yRelativeToHeader * -15}px)`;
+      document.getElementById("cube__image_2").style.transform = `translate(${xRelativeToHeader * -8}px, ${yRelativeToHeader * -8}px)`;
+      document.getElementById("cube__image_3").style.transform = `translate(${xRelativeToHeader * -20}px, ${yRelativeToHeader * -20}px)`;
+      document.getElementById("cube__image_4").style.transform = `translate(${xRelativeToHeader * 5}px, ${yRelativeToHeader * 5}px)`;
+    });
   </script>
 </html>
